@@ -318,6 +318,13 @@ window-rule {
     default-column-width {}
 }
 
+window-rule {
+    // 设置透明度（0.0 为全透明，1.0 为全不透明）
+    opacity 0.95
+    // 关键：关闭边框背景绘制，防止半透明窗口后面透出脏颜色
+    draw-border-with-background false
+}
+
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
