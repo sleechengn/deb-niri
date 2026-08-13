@@ -28,6 +28,10 @@ if [ ! -e "/home/sa" ]; then
 	useradd -m --uid 100000 sa
 	usermod -aG input,video sa
 	echo "sa:123456" | chpasswd
+	find /usr/lib/|grep -F /getty@|xargs -i sed -i 's,^ExecStart.*,ExecStart=-/sbin/agetty --noclear %I $TERM --autologin sa,g' {}
+	systemctl daemon-reload
+	systemctl disable getty@tty1.service
+	systemctl enable getty@tty1.service
 fi
 
 systemctl --user -M sa@ daemon-reload
