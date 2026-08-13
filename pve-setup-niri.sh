@@ -9,10 +9,11 @@ apt install -y $PACK_PATH/mpvpaper_20260812-1_amd64.deb
 apt install -y $PACK_PATH/swww_0.11.2~master2-1_amd64.deb
 apt install -y $PACK_PATH/swww-daemon_0.11.2~master2-1_amd64.deb
 apt install -y $PACK_PATH/xwayland-satellite_0.8.2-1_amd64.deb
+apt install -y $PACK_PATH/ghostty_0.1.0-1_amd64.deb
 
 apt install -y alacritty fuzzel swaybg waybar nautilus nautilus-extension-gnome-terminal
 apt install -y libpipewire-0.3-0 libpipewire-0.3-dev libdisplay-info2 libseat1 libinput10 libegl1 libegl-mesa0
-apt install -y pavucontrol pipewire pipewire-pulse wireplumber
+apt install -y pavucontrol pipewire pipewire-pulse wireplumber libgtk4-layer-shell0
 
 apt install -y flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
