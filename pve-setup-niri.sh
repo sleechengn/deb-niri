@@ -50,3 +50,4 @@ echo ----------------------
 echo "your username: $USERNAME"
 echo "your password: $PASSWORD"
 echo "login $USERNAME, run \"niri-session\""
+echo "please reboot"
