@@ -31,7 +31,7 @@ if ! id "$USERNAME" > /dev/null 2>&1; then
 	usermod -aG input,video $USERNAME
 	home=$(eval echo "~$USERNAME")
 	echo "$USERNAME:123456" | chpasswd
-	find /usr/lib/|grep -F /getty@|xargs -i sed -i 's,^ExecStart.*,ExecStart=-/sbin/agetty --noclear %I $TERM --autologin sa,g' {}
+	find /usr/lib/|grep -F /getty@|xargs -i sed -i "s,^ExecStart.*,ExecStart=-/sbin/agetty --noclear %I $TERM --autologin $USERNAME,g" {}
 	systemctl daemon-reload
 	systemctl disable getty@tty1.service
 	systemctl enable getty@tty1.service
