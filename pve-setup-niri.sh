@@ -37,3 +37,8 @@ fi
 systemctl --user -M sa@ daemon-reload
 systemctl --user -M sa@ enable --now pipewire pipewire-pulse wireplumber
 su sa -c "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
+
+echo 
+echo ----------------------
+echo "your username: sa"
+echo "your password: 123456"
