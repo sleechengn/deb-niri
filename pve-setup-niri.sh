@@ -47,12 +47,12 @@ systemctl --user -M $USERNAME@ daemon-reload
 systemctl --user -M $USERNAME@ enable --now pipewire pipewire-pulse wireplumber
 su $USERNAME -c "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
 
-echo 
+echo
 echo ----------------------
 echo "your username: $USERNAME"
 echo "your password: $PASSWORD"
 echo "login $USERNAME, run \"niri-session\""
 echo "please reboot"
 else
-exit 1
+echo "root need"
 fi
