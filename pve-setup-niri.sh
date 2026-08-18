@@ -3,6 +3,7 @@
 set -x
 
 USERNAME="sa"
+PASSWORD="12345678"
 
 PACK_PATH=$(realpath $(dirname $0))
 
@@ -30,7 +31,7 @@ if ! id "$USERNAME" > /dev/null 2>&1; then
 	useradd -m --uid 100000 $USERNAME
 	usermod -aG input,video $USERNAME
 	home=$(eval echo "~$USERNAME")
-	echo "$USERNAME:123456" | chpasswd
+	echo "$USERNAME:$PASSWORD" | chpasswd
 	find /usr/lib/|grep -F /getty@|xargs -i sed -i "s,^ExecStart.*,ExecStart=-/sbin/agetty --noclear %I $TERM --autologin $USERNAME,g" {}
 	systemctl daemon-reload
 	systemctl disable getty@tty1.service
@@ -47,5 +48,5 @@ su $USERNAME -c "gsettings set org.gnome.desktop.interface color-scheme prefer-d
 echo 
 echo ----------------------
 echo "your username: $USERNAME"
-echo "your password: 123456"
+echo "your password: $PASSWORD"
 echo "login $USERNAME, run \"niri-session\""
