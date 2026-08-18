@@ -2,6 +2,8 @@
 
 set -x
 
+USERNAME="sa"
+
 PACK_PATH=$(realpath $(dirname $0))
 
 apt install -y $PACK_PATH/niri_26.4.0-1_amd64.deb
@@ -24,26 +26,26 @@ apt install -y fonts-noto-cjk-extra
 apt install -y fcitx5 fcitx5-table-wubi98
 
 # user
-if ! id "sa" > /dev/null 2>&1; then
-	useradd -m --uid 100000 sa
-	usermod -aG input,video sa
-	home=$(eval echo "~sa")
-	echo "sa:123456" | chpasswd
+if ! id "$USERNAME" > /dev/null 2>&1; then
+	useradd -m --uid 100000 $USERNAME
+	usermod -aG input,video $USERNAME
+	home=$(eval echo "~$USERNAME")
+	echo "$USERNAME:123456" | chpasswd
 	find /usr/lib/|grep -F /getty@|xargs -i sed -i 's,^ExecStart.*,ExecStart=-/sbin/agetty --noclear %I $TERM --autologin sa,g' {}
 	systemctl daemon-reload
 	systemctl disable getty@tty1.service
 	systemctl enable getty@tty1.service
 	mkdir -p $home/.config/niri
 	cp $PACK_PATH/default-config.kdl $home/.config/niri/config.kdl
-	chown -R sa $home/.config
+	chown -R $USERNAME $home/.config
 fi
 
-systemctl --user -M sa@ daemon-reload
-systemctl --user -M sa@ enable --now pipewire pipewire-pulse wireplumber
-su sa -c "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
+systemctl --user -M $USERNAME@ daemon-reload
+systemctl --user -M $USERNAME@ enable --now pipewire pipewire-pulse wireplumber
+su $USERNAME -c "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
 
 echo 
 echo ----------------------
-echo "your username: sa"
+echo "your username: $USERNAME"
 echo "your password: 123456"
-echo "login sa, run \"niri-session\""
+echo "login $USERNAME, run \"niri-session\""
