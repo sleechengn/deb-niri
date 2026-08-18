@@ -51,8 +51,8 @@ echo
 echo ----------------------
 echo "your username: $USERNAME"
 echo "your password: $PASSWORD"
-echo "login $USERNAME, run \"niri-session\""
-echo "please reboot"
+echo
+echo "please reboot,login $USERNAME, run \"niri-session\""
 else
 echo "root need"
 fi
