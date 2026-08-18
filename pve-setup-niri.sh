@@ -2,6 +2,8 @@
 
 set -x
 
+if [ $EUID -eq 0 ]; then
+
 USERNAME="sa"
 PASSWORD="12345678"
 
@@ -51,3 +53,6 @@ echo "your username: $USERNAME"
 echo "your password: $PASSWORD"
 echo "login $USERNAME, run \"niri-session\""
 echo "please reboot"
+else
+exit 1
+fi
