@@ -24,14 +24,18 @@ apt install -y fonts-noto-cjk-extra
 apt install -y fcitx5 fcitx5-table-wubi98
 
 # user
-if [ ! -e "/home/sa" ]; then
+if ! id "sa" > /dev/null 2>&1; then
 	useradd -m --uid 100000 sa
 	usermod -aG input,video sa
+	home=$(eval echo "~sa")
 	echo "sa:123456" | chpasswd
 	find /usr/lib/|grep -F /getty@|xargs -i sed -i 's,^ExecStart.*,ExecStart=-/sbin/agetty --noclear %I $TERM --autologin sa,g' {}
 	systemctl daemon-reload
 	systemctl disable getty@tty1.service
 	systemctl enable getty@tty1.service
+	mkdir -p $home/.config/niri
+	cp $PACK_PATH/default-config.kdl $home/.config/niri/config.kdl
+	chown -R sa $home/.config
 fi
 
 systemctl --user -M sa@ daemon-reload
