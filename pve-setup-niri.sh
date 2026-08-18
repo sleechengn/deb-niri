@@ -42,3 +42,4 @@ echo
 echo ----------------------
 echo "your username: sa"
 echo "your password: 123456"
+echo "login sa, run \"niri-session\""
